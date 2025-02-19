@@ -1,5 +1,32 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRpdHlhczE0MjYiLCJhIjoiY203OWd2YTV0MDVhdTJycTNmb21tbTduZyJ9.yveBqTIz-SyHXJjXAF6quA';
 
+let timeFilter = -1;
+
+const timeSlider = document.getElementById('time-slider');
+const selectedTime = document.getElementById('selected-time');
+const anyTimeLabel = document.getElementById('any-time');
+
+function formatTime(minutes) {
+    const date = new Date(0, 0, 0, 0, minutes); // Set hours & minutes
+    return date.toLocaleString('en-US', { timeStyle: 'short' }); // Format as HH:MM AM/PM
+}
+
+function updateTimeDisplay() {
+    timeFilter = Number(timeSlider.value);
+  
+    if (timeFilter === -1) {
+      selectedTime.textContent = '';
+      anyTimeLabel.style.display = 'block';
+    } else {
+      selectedTime.textContent = formatTime(timeFilter);
+      anyTimeLabel.style.display = 'none';
+    }
+}
+
+timeSlider.addEventListener('input', updateTimeDisplay);
+
+updateTimeDisplay();
+
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
