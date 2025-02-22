@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoCycle</title>
-    <link rel="stylesheet" href="global.css">
+    <title>Geo Cycle</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <!-- Mapbox GL JS CSS -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="map.css">
-</head>
-<body>
-    <header>
-        <h1>🚴🏼‍♀️ Geo Cycle</h1>
-        <label>
-            Filter by Time:
-            <input type="range" id="time-slider" min="-1" max="1440" value="-1">
-            <time id="selected-time"></time>
-            <em id="any-time">(any time)</em>
-        </label>
-    </header>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>🚴🏼‍♀️ Geo Cycle</h1>
+
+    <label>
+      Filter by Time:
+      <input type="range" id="time-slider" min="-1" max="1440" value="-1">
+      <time id="selected-time"></time>
+      <em id="any-time">(any time)</em>
+    </label>
+
     <p>
-        This is an immersive, interactive map visualization of bike traffic in the Boston area during different times of the day.
+      This is an immersive, interactive map visualization of bike traffic in the Boston/Cambridge area during different times of the day.
     </p>
+
     <div id="map">
-        <svg></svg>
+      <svg></svg>
     </div>
-    <div id="tooltip"></div>
+
+    <div class="legend">
+      <div style="--departure-ratio: 1">More Departures</div>
+      <div style="--departure-ratio: 0.5">Balanced</div>
+      <div style="--departure-ratio: 0">More Arrivals</div>
+    </div>
+
+    <div id="tooltip" style="
+      position: absolute;
+      display: none;
+      background: white;
+      padding: 5px;
+      border: 1px solid black;
+      border-radius: 6px;
+      font-size: 12px;
+      pointer-events: none;
+    "></div>
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- Mapbox GL JS JavaScript -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="map.js"></script>
-</body>
+    
+  </body>
 </html>
